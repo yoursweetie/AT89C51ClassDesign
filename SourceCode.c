@@ -51,7 +51,7 @@ void display(unsigned char time)    //控制两个数码管的显示倒计时函
 void main()    //主函数
 {
     m = nanbei_time;
-    P1 = 0x00;
+    P1 = 0x00;    //所有灯熄灭
     init_timer0();
     
     while (1) 
@@ -71,37 +71,20 @@ void main()    //主函数
             if (m <= 3)
             {
                 y1 = ~y1;    //取反，y1输出0变为1，黄灯亮起
-                r1 = 0;
                 g1 = 0;
-                r2 = 1;
-                g2 = 0;
-            }
-            display(m);    
-            r1 = 0;
-            g2 = 0;
-            r2 = 1;
-        }
-        while (m != 3);
-
-        do
-        {        
-            if (m <= 3)
-            {
-                y1 = ~y1;
                 r1 = 0;
-		g1 = 0;
+                g2 = 0;
                 r2 = 1;
-		g2 = 0; 
             }
             display(m);    
         }
-	while (m != 0);
+        while (m != 0);
 
 	if (m == 0)
         {
             m = dongxi_time;
-	    y1 = 0;
-	    y2 = 0;
+	    y1 = 0;    
+	    y2 = 0;    //黄灯熄灭
         }
 
 	do
@@ -117,10 +100,10 @@ void main()    //主函数
 	do
         {
 	    if(m <= 3)
-            {    
+            {   
+		y2 = ~y2;
                 r1 = 1;
-		g1 = 0;
-                y2 = ~y2;
+		g1 = 0; 
 		r2 = 0;
 		g2 = 0;
              }
