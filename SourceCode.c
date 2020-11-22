@@ -25,8 +25,8 @@ void init_timer0(void) 	   //中断初始化函数
 
 void timer(void) interrupt 1  //中断服务函数
 {
-    TH0=(65536-50000) / 256;
-    TL0=(65536-50000) % 256;
+    TH0=(65536 - 50000) / 256;
+    TL0=(65536 - 50000) % 256;
     f++;
     if(f == 20)
     {
@@ -35,10 +35,10 @@ void timer(void) interrupt 1  //中断服务函数
     }
 }
 
-void display(unsigned char time)
+void display(unsigned char time)    //控制两个数码管的显示倒计时函数
 {
-    unsigned char shiwei;
-    unsigned char gewei;
+    unsigned char shiwei;    //十位
+    unsigned char gewei;     //个位
 
     shiwei = time / 10;
     gewei = time % 10;
@@ -49,8 +49,8 @@ void display(unsigned char time)
 
 void main() 
 {
-    m=nanbei_time;
-   	P1=0x00;
+    m = nanbei_time;
+   	P1 = 0x00;
     init_timer0();
    	while(1) 
     {
@@ -68,16 +68,16 @@ void main()
         {        
             if(m<=3)
             {
-                y1=~y1;    //黄灯亮起
-                r1=0;
-                g1=0;
-                r2=1;
-                g2=0;
+                y1 = ~y1;    //取反，y1输出0变为1，黄灯亮起
+                r1 = 0;
+                g1 = 0;
+                r2 = 1;
+                g2 = 0;
             }
             display(m);    
-            r1=0;
-            g2=0;
-            r2=1;
+            r1 = 0;
+            g2 = 0;
+            r2 = 1;
         }
         while(m != 3);
 
@@ -86,8 +86,10 @@ void main()
             if(m <= 3)
             {
                 y1 = ~y1;
-                r1=0;g1=0;
-                r2=1;g2=0; 
+                r1 = 0;
+		g1 = 0;
+                r2 = 1;
+		g2 = 0; 
              }
             display(m);    
         }
@@ -114,8 +116,11 @@ void main()
         {
 	        if(m <= 3)
             {    
-                r1=1;g1=0;
-                y2=~y2;r2=0;g2=0;
+                r1 = 1;
+		g1 = 0;
+                y2 = ~y2;
+		r2 = 0;
+		g2 = 0;
             }
             display(m);
         }
