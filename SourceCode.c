@@ -1,12 +1,12 @@
 //模拟东西方向的十字路口交通信号控制情况。东西向通行时间为80s，南北向通行时间为60s，缓冲时间为3s。
 //P1接各个方向的灯，P0接液晶显示器的十位，P2接个位
 #include <reg51.h>
-sbit g1=P1^0; 	//位定义, P1口控制红绿黄灯的亮灭
-sbit r1=P1^1; 
-sbit y1=P1^2; 
-sbit g2=P1^3; 
-sbit r2=P1^4; 
-sbit y2=P1^5; 
+sbit g1 = P1^0; 	//位定义, P1口控制红绿黄灯的亮灭
+sbit r1 = P1^1; 
+sbit y1 = P1^2; 
+sbit g2 = P1^3; 
+sbit r2 = P1^4; 
+sbit y2 = P1^5; 
 unsigned char f = 0;
 unsigned char nanbei_time = 80;	 //定义南北的时间长度
 unsigned char dongxi_time = 60;    //定义东西的时间长度
@@ -25,8 +25,8 @@ void init_timer0(void) 	   //中断初始化函数
 
 void timer(void) interrupt 1  //中断服务函数
 {
-    TH0=(65536 - 50000) / 256;
-    TL0=(65536 - 50000) % 256;
+    TH0 = (65536 - 50000) / 256;
+    TL0 = (65536 - 50000) % 256;
     f++;
     
     if (f == 20)
@@ -59,10 +59,10 @@ void main()    //主函数
         do
         {
 	    display(m);
-   	    g1=1; 
-            r1=0;
-            g2=0;
-            r2=1;
+   	    g1 = 1; 
+            r1 = 0;
+            g2 = 0;
+            r2 = 1;
         }
         while (m != 3);
 
